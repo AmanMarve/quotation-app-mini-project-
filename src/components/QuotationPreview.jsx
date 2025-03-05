@@ -45,15 +45,15 @@ const QuotationPreview = () => {
       <div id="quotation-format" className="bg-white border border-black">
         <QuotationHeader />
         <div>
-          <div className="flex font-semibold justify-between p-3">
+          <div className="flex text-sm font-semibold justify-between p-3">
             <p>Bill No:</p>
             <p className="italic">
               Date: {new Date().toLocaleDateString("en-GB")}
             </p>
           </div>
-          <div className="flex items-center gap-2 p-2 pb-4">
-            M/s.
-            <p className="border-b-[1px] border-black  min-w-[560px]">
+          <div className="flex text-sm items-center gap-2 p-2 pb-4">
+            M/s. :
+            <p className="text-lg">
               {quotation.customer.name}
             </p>
           </div>
@@ -96,7 +96,7 @@ const QuotationPreview = () => {
               ))}
             </tbody>
           </table>
-          <h2 className="text-lg border-t text-end px-3 border-black font-semibold ">
+          <h2 className="text-lg border-t text-end px-3 py-1 pb-2 border-black font-semibold ">
             Total Amount: ₹
             {quotation.items.reduce(
               (total, item) => total + item.qty * item.price,
