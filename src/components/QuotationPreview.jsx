@@ -41,7 +41,7 @@ const QuotationPreview = () => {
   }
 
   return (
-    <div className="p-6 border shadow-lg max-w-2xl mx-auto">
+    <div id="quotation-wrapper" className="p-6 border shadow-lg max-w-2xl mx-auto">
       <div id="quotation-format" className="bg-white border border-black">
         <QuotationHeader />
         <div>
