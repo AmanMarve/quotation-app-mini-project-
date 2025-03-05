@@ -15,7 +15,7 @@ const QuotationHeader = () => {
         </h3>
       </div>
 
-      <p className="text-center mb-2 text-sm sm:text-xl italic -mt-1 -sm:mt-1">
+      <p className="text-center mb-2 text-sm sm:text-xl italic -mt-4 -sm:mt-1">
         Sales & Services
       </p>
 

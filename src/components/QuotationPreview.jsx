@@ -41,34 +41,35 @@ const QuotationPreview = () => {
   }
 
   return (
-    <div id="quotation-wrapper" className="p-6 border shadow-lg max-w-2xl mx-auto">
+    <div
+      id="quotation-wrapper"
+      className="p-6 border shadow-lg max-w-2xl mx-auto"
+    >
       <div id="quotation-format" className="bg-white border border-black">
         <QuotationHeader />
         <div>
-          <div className="flex text-sm font-semibold justify-between p-3">
+          <div className="flex sm:text-sm text-[9px] font-semibold justify-between pt-1 px-3">
             <p>Bill No:</p>
             <p className="italic">
               Date: {new Date().toLocaleDateString("en-GB")}
             </p>
           </div>
-          <div className="flex text-sm items-center gap-2 p-2 pb-4">
+          <div className="flex sm:text-lg text-[9px] items-center gap-2 px-3 pb-1">
             M/s. :
-            <p className="text-lg">
-              {quotation.customer.name}
-            </p>
+            <p className="text-sm sm:text-lg">{quotation.customer.name}</p>
           </div>
           <table className="w-full text-center">
             <thead>
-              <tr className="">
+              <tr className="sm:text-[13px] text-[10px] italic">
                 <th className="border-b border-t border-black p-2">
-                  PARTICULARS{" "}
+                  Particulars{" "}
                 </th>
                 <th className="border border-black p-2">QTY</th>
                 <th className="border border-black p-2">Rate</th>
                 <th className="border-b border-t border-black p-2">Amount</th>
               </tr>
             </thead>
-            <tbody className="min-h-[500px]">
+            <tbody className="min-h-[500px] sm:text-[13px] text-[10px]">
               {quotation.items.map((item, index) => (
                 <tr key={index} className="gap-0">
                   <td className="border-r border-black p-2">{item.name}</td>
@@ -87,16 +88,19 @@ const QuotationPreview = () => {
               {Array.from({
                 length: Math.max(10 - quotation.items.length, 0),
               }).map((_, i) => (
-                <tr key={`empty-${i}`} className="h-[40px]">
-                  <td className="border-r border-black p-2">&nbsp;</td>
-                  <td className="border-r border-black p-2">&nbsp;</td>
-                  <td className="border-r border-black p-2">&nbsp;</td>
-                  <td className=" border-black p-2">&nbsp;</td>
+                <tr
+                  key={`empty-${i}`}
+                  className="h-[10px] sm:h-[30px] md:h-[40px]"
+                >
+                  <td className="border-r border-black p-1 sm:p-2">&nbsp;</td>
+                  <td className="border-r border-black p-1 sm:p-2">&nbsp;</td>
+                  <td className="border-r border-black p-1 sm:p-2">&nbsp;</td>
+                  <td className="border-black p-1 sm:p-2">&nbsp;</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <h2 className="text-lg border-t text-end px-3 py-1 pb-2 border-black font-semibold ">
+          <h2 className="sm:text-[18px] text-[13px] border-t text-end px-3 py-1 pb-2 border-black font-semibold ">
             Total Amount: ₹
             {quotation.items.reduce(
               (total, item) => total + item.qty * item.price,
