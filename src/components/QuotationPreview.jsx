@@ -4,6 +4,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { toast } from "react-hot-toast";
 import QuotationHeader from "./QuotationHeader";
+import QuotationFooter from "./QuotationFooter";
 
 const QuotationPreview = () => {
   const navigate = useNavigate();
@@ -22,10 +23,10 @@ const QuotationPreview = () => {
       .then((canvas) => {
         const imgData = canvas.toDataURL("image/png");
         const pdf = new jsPDF("p", "mm", "a4");
-        const imgWidth = 210;
+        const imgWidth = 190;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-        pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+        pdf.addImage(imgData, "PNG", 10, 10, imgWidth, imgHeight);
         pdf.save("Quotation.pdf");
         toast.success("Quotation Downloaded Successfully!");
       })
@@ -43,36 +44,59 @@ const QuotationPreview = () => {
     <div className="p-6 border shadow-lg max-w-2xl mx-auto">
       <div id="quotation-format" className="bg-white border border-black">
         <QuotationHeader />
-        <div className="p-4">
-          <h2 className="text-xl font-semibold mt-4">Customer Details</h2>
-          <p>Name: {quotation.customer.name}</p>
-          <p>Phone: {quotation.customer.phone}</p>
-
-          <h2 className="text-xl font-semibold mt-4">Items</h2>
-          <table className="w-full border-collapse border">
+        <div>
+          <div className="flex font-semibold justify-between p-3">
+            <p>Bill No:</p>
+            <p className="italic">
+              Date: {new Date().toLocaleDateString("en-GB")}
+            </p>
+          </div>
+          <div className="flex items-center gap-2 p-2 pb-4">
+            M/s.
+            <p className="border-b-[1px] border-black  min-w-[560px]">
+              {quotation.customer.name}
+            </p>
+          </div>
+          <table className="w-full text-center">
             <thead>
-              <tr className="bg-gray-200">
-                <th className="border p-2">Item</th>
-                <th className="border p-2">Qty</th>
-                <th className="border p-2">Price</th>
-                <th className="border p-2">Total</th>
+              <tr className="">
+                <th className="border-b border-t border-black p-2">
+                  PARTICULARS{" "}
+                </th>
+                <th className="border border-black p-2">QTY</th>
+                <th className="border border-black p-2">Rate</th>
+                <th className="border-b border-t border-black p-2">Amount</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="min-h-[500px]">
               {quotation.items.map((item, index) => (
-                <tr key={index}>
-                  <td className="border p-2">{item.name}</td>
-                  <td className="border p-2 text-center">{item.qty}</td>
-                  <td className="border p-2 text-right">₹{item.price}</td>
-                  <td className="border p-2 text-right">
-                    ₹{item.qty * item.price}
+                <tr key={index} className="gap-0">
+                  <td className="border-r border-black p-2">{item.name}</td>
+                  <td className="border-r border-black p-2 text-top">
+                    {item.qty}
                   </td>
+                  <td className="border-r border-black p-2 text-center whitespace-nowrap">
+                    {item.price}/-
+                  </td>
+                  <td className=" border-black p-2 text-center">
+                    {item.qty * item.price}/-
+                  </td>
+                </tr>
+              ))}
+
+              {Array.from({
+                length: Math.max(10 - quotation.items.length, 0),
+              }).map((_, i) => (
+                <tr key={`empty-${i}`} className="h-[40px]">
+                  <td className="border-r border-black p-2">&nbsp;</td>
+                  <td className="border-r border-black p-2">&nbsp;</td>
+                  <td className="border-r border-black p-2">&nbsp;</td>
+                  <td className=" border-black p-2">&nbsp;</td>
                 </tr>
               ))}
             </tbody>
           </table>
-
-          <h2 className="text-xl font-semibold mt-4">
+          <h2 className="text-lg border-t text-end px-3 border-black font-semibold ">
             Total Amount: ₹
             {quotation.items.reduce(
               (total, item) => total + item.qty * item.price,
@@ -80,6 +104,7 @@ const QuotationPreview = () => {
             )}
           </h2>
         </div>
+        <QuotationFooter />
       </div>
 
       <div className="mt-4 flex space-x-4">
