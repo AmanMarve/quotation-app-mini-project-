@@ -3,7 +3,7 @@ import React from "react";
 const QuotationHeader = () => {
   return (
     <div className="border-b border-black">
-      <div className="flex flex-row sm-p-1 p-4 sm:flex-row justify-between  font-bold text-[10px] sm:text-base mb-2">
+      <div className="flex flex-row sm-p-0 p-2 sm:flex-row justify-between  font-bold text-[10px] sm:text-base mb-2">
         <p>GST NO: GST1234567890</p>
         <p>Contact: 9049384729</p>
       </div>
