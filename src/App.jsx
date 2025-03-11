@@ -11,6 +11,8 @@ function App() {
     <Toaster />
     <BackgroundComponent/>
       <div className="flex flex-col min-h-screen">
+      <h1 className="text-center m-auto text-2xl font-semibold bg-gradient-to-r from-green-600 to-indigo-600 text-white rounded-lg mb-2 px-5 py-1 italic pb-2 mt-2" >Quotation-Generator</h1>
+
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />

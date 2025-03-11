@@ -91,11 +91,10 @@ const QuotationForm = () => {
 
   return (
     <div className="z-1 p-4 max-w-lg mx-auto">
-      <h1 className="text-2xl text-white font-bold text-center mb-4">
+     <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+      <h1 className="text-2xl text-black font-bold text-center mb-4">
         Create Quotation
       </h1>
-
-      <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
         <h2 className="text-xl font-semibold mb-2">Customer Details</h2>
         <input
           required
