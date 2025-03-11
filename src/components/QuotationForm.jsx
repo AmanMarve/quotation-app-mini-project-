@@ -49,7 +49,7 @@ const QuotationForm = () => {
   const clearForm = () => {
     setQuotation({
       customer: { name: "", phone: "" },
-      items: [{ name: "", qty: 1, price: 0 }],
+      items: [{ name: "", qty: "", price: "" }],
     });
     toast.success("Form Cleared");
   };
@@ -79,8 +79,8 @@ const QuotationForm = () => {
   };
 
   return (
-    <div className="p-4 max-w-lg mx-auto">
-      <h1 className="text-2xl font-bold text-center mb-4">Create Quotation</h1>
+    <div className="z-1 p-4 max-w-lg mx-auto">
+      <h1 className="text-2xl text-white font-bold text-center mb-4">Create Quotation</h1>
 
       <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
         <h2 className="text-xl font-semibold mb-2">Customer Details</h2>

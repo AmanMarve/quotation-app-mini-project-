@@ -41,7 +41,7 @@ const QuotationPreview = () => {
   return (
     <div
       id="quotation-wrapper"
-      className="p-6 border shadow-lg max-w-2xl mx-auto"
+      className="p-6 z-1 bg-white border shadow-lg max-w-2xl mx-auto"
     >
       <div
         id="quotation-format"
@@ -91,13 +91,11 @@ const QuotationPreview = () => {
 
           <table className="w-full">
             <thead>
-              <tr className="sm:text-[13px] justify-center items-center text-[10px] italic">
-                <th className="-mt-1 border-b border-t border-black ">
-                  Particulars
-                </th>
-                <th className="-mt-1 border border-black">QTY</th>
-                <th className="-mt-1 border border-black ">Rate</th>
-                <th className="-mt-1 border-b border-t border-black">Amount</th>
+              <tr className="sm:text-[13px] pb-2 justify-center items-center text-[10px] italic">
+                <th className="border-b border-t border-black ">Particulars</th>
+                <th className="border border-black">QTY</th>
+                <th className="border border-black ">Rate</th>
+                <th className="border-b border-t border-black">Amount</th>
               </tr>
             </thead>
             <tbody className="min-h-[500px] text-center sm:text-[13px] text-[10px]">
@@ -139,9 +137,9 @@ const QuotationPreview = () => {
             )}
           </h2>
         </div>
-        <div className="flex sm:text-[18px] m-0 text-[12px] font-semibold justify-between items-center p-4 border-t border-black">
+        <div className="flex sm:text-[18px] m-0 text-[10px] font-semibold justify-between items-center p-2 border-t border-black">
           <p>Thank You...!</p>
-          <div className="flex sm:text-[18px] text-[12px] flex-col items-center justify-between gap-3 sm:gap-5">
+          <div className="flex sm:text-[18px] text-[10px] flex-col items-center justify-between gap-5 sm:gap-5">
             <p>Advik Enterprises</p>
             <p>Prop. Ganesh B. Derkar</p>
           </div>
