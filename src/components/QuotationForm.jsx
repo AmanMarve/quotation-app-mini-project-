@@ -78,9 +78,22 @@ const QuotationForm = () => {
     navigate("/preview", { state: { quotation } });
   };
 
+  const removeItem = (index) => {
+    if (quotation.items.length > 1) {
+      setQuotation({
+        ...quotation,
+        items: quotation.items.filter((_, i) => i !== index),
+      });
+    } else {
+      toast.error("At least one item is required.");
+    }
+  };
+
   return (
     <div className="z-1 p-4 max-w-lg mx-auto">
-      <h1 className="text-2xl text-white font-bold text-center mb-4">Create Quotation</h1>
+      <h1 className="text-2xl text-white font-bold text-center mb-4">
+        Create Quotation
+      </h1>
 
       <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
         <h2 className="text-xl font-semibold mb-2">Customer Details</h2>
@@ -105,15 +118,27 @@ const QuotationForm = () => {
       <div className="bg-gray-100 p-4 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-2">Items</h2>
         {quotation.items.map((item, index) => (
-          <div key={index} className="grid grid-cols-1 gap-2 items-center mb-2">
-            <input
-              type="text"
-              required
-              placeholder="Item Name"
-              value={item.name}
-              onChange={(e) => handleItemChange(index, "name", e.target.value)}
-              className="border p-2 w-full rounded"
-            />
+          <div key={index} className="grid grid-cols-3 gap-2 items-center mb-2">
+            <div className="relative w-full">
+              <input
+                type="text"
+                required
+                placeholder="Item Name"
+                value={item.name}
+                onChange={(e) =>
+                  handleItemChange(index, "name", e.target.value)
+                }
+                className="border p-2 w-full rounded pr-8"
+              />
+              {quotation.items.length > 1 && (
+                <button
+                  onClick={() => removeItem(index)}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white px-2 py-1 rounded text-[10px]"
+                >
+                  ❌
+                </button>
+              )}
+            </div>
             <input
               type="number"
               required
@@ -122,7 +147,7 @@ const QuotationForm = () => {
               onChange={(e) =>
                 handleItemChange(index, "qty", Number(e.target.value))
               }
-              className="border p-2 w-full rounded"
+              className="border p-2 rounded"
             />
             <input
               type="number"
@@ -132,7 +157,7 @@ const QuotationForm = () => {
               onChange={(e) =>
                 handleItemChange(index, "price", Number(e.target.value))
               }
-              className="border p-2 w-full rounded"
+              className="border p-2 rounded"
             />
           </div>
         ))}
